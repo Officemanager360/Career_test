@@ -1,0 +1,171 @@
+:root{
+--navy:#1E3A5F;
+--gold:#D4A843;
+--bg:#F8F7F4;
+--text:#2D2D2D;
+--border:#E8E5DF;
+--radius:12px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+font-family:'DM Sans',sans-serif;
+background:var(--bg);
+color:var(--text);
+}
+
+/* NAV */
+.nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:16px 24px;
+background:white;
+border-bottom:1px solid var(--border);
+}
+
+.logo{
+font-family:'Playfair Display',serif;
+font-weight:700;
+}
+
+/* HERO */
+.hero{
+padding:80px 20px;
+text-align:center;
+}
+
+.hero h1{
+font-size:2rem;
+margin-bottom:10px;
+}
+
+/* SECTIONS */
+.section{
+padding:40px 20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:var(--radius);
+border:1px solid var(--border);
+}
+
+/* BUTTONS */
+button{
+padding:10px 14px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+.primary{
+background:var(--navy);
+color:white;
+}
+
+/* AUTH */
+.auth{
+max-width:400px;
+margin:80px auto;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.auth input{
+padding:10px;
+border:1px solid var(--border);
+border-radius:8px;
+}
+
+/* APP LAYOUT */
+.app{
+display:flex;
+height:100vh;
+}
+
+.sidebar{
+width:220px;
+background:var(--navy);
+color:white;
+padding:20px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.sidebar button{
+background:none;
+color:white;
+text-align:left;
+}
+
+.main{
+flex:1;
+display:flex;
+flex-direction:column;
+}
+
+.topbar{
+background:white;
+padding:12px;
+display:flex;
+align-items:center;
+gap:10px;
+border-bottom:1px solid var(--border);
+}
+
+.content{
+padding:20px;
+overflow:auto;
+}
+
+.page{
+display:none;
+}
+
+.page.active{
+display:block;
+}
+
+/* VIEWS */
+.view{
+display:none;
+}
+
+.view.active{
+display:block;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.app{
+flex-direction:column;
+}
+
+.sidebar{
+flex-direction:row;
+overflow-x:auto;
+width:100%;
+}
+
+.sidebar button{
+flex:1;
+font-size:12px;
+}
+
+}
