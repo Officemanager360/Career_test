@@ -3,170 +3,123 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Career OS Prototype</title>
+<title>Career OS</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<style>
-:root{
---navy:#1E3A5F;
---gold:#D4A843;
---bg:#F8F7F4;
---text:#2D2D2D;
---border:#E8E5DF;
-}
-
-body{
-margin:0;
-font-family:'DM Sans',sans-serif;
-background:var(--bg);
-color:var(--text);
-}
-
-/* Layout */
-.app{
-display:flex;
-height:100vh;
-}
-
-.sidebar{
-width:240px;
-background:var(--navy);
-color:white;
-padding:20px;
-}
-
-.sidebar button{
-display:block;
-width:100%;
-margin-bottom:10px;
-padding:10px;
-border:none;
-background:transparent;
-color:white;
-cursor:pointer;
-text-align:left;
-}
-
-.sidebar button:hover{
-background:rgba(255,255,255,0.1);
-}
-
-.main{
-flex:1;
-display:flex;
-flex-direction:column;
-}
-
-.topbar{
-background:white;
-padding:15px;
-border-bottom:1px solid var(--border);
-}
-
-.content{
-padding:20px;
-}
-
-/* Cards */
-.card{
-background:white;
-padding:20px;
-border-radius:10px;
-border:1px solid var(--border);
-margin-bottom:20px;
-}
-
-/* Grid */
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-}
-
-/* Buttons */
-.btn{
-padding:10px 16px;
-border:none;
-border-radius:8px;
-cursor:pointer;
-}
-
-.btn-primary{
-background:var(--navy);
-color:white;
-}
-
-/* Hidden */
-.hidden{
-display:none;
-}
-</style>
+<link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
 
+<div id="app">
+
+<!-- LANDING -->
+<section id="view-landing" class="view active">
+
+<header class="nav">
+  <div class="logo">Career OS</div>
+  <div>
+    <button onclick="goTo('login')">Connexion</button>
+    <button class="primary" onclick="goTo('register')">Commencer</button>
+  </div>
+</header>
+
+<div class="hero">
+  <h1>Votre système d’exploitation de carrière</h1>
+  <p>Analyse, CV, coaching, candidatures.</p>
+  <button class="primary" onclick="goTo('register')">Démarrer</button>
+</div>
+
+<section class="section">
+<h2>Fonctionnalités</h2>
+<div class="grid">
+<div class="card">Analyse personnalité</div>
+<div class="card">Bilan compétences</div>
+<div class="card">CV ATS</div>
+<div class="card">Coaching</div>
+</div>
+</section>
+
+<section class="section">
+<h2>Témoignages</h2>
+<div class="card">“Très utile”</div>
+</section>
+
+<section class="section">
+<h2>FAQ</h2>
+<div class="card">Questions fréquentes</div>
+</section>
+
+</section>
+
+<!-- AUTH -->
+<section id="view-login" class="view">
+<div class="auth">
+<h2>Connexion</h2>
+<input id="login-email" placeholder="Email">
+<input id="login-pass" type="password" placeholder="Mot de passe">
+<button class="primary" onclick="login()">Se connecter</button>
+<button onclick="goTo('landing')">Retour</button>
+</div>
+</section>
+
+<section id="view-register" class="view">
+<div class="auth">
+<h2>Inscription</h2>
+<input id="reg-name" placeholder="Nom">
+<input id="reg-email" placeholder="Email">
+<input id="reg-pass" type="password" placeholder="Mot de passe">
+<button class="primary" onclick="register()">Créer</button>
+<button onclick="goTo('landing')">Retour</button>
+</div>
+</section>
+
+<!-- APP -->
+<section id="view-app" class="view">
+
 <div class="app">
 
-<!-- Sidebar -->
-<div class="sidebar">
-<h2>Career OS</h2>
+<aside class="sidebar">
+<button onclick="nav('dashboard')">Dashboard</button>
+<button onclick="nav('personality')">Personnalité</button>
+<button onclick="nav('skills')">Compétences</button>
+<button onclick="nav('jobs')">Candidatures</button>
+<button onclick="nav('coach')">Coaching</button>
+<button onclick="logout()">Logout</button>
+</aside>
 
-<button onclick="show('dashboard')">Dashboard</button>
-<button onclick="show('profile')">Profil</button>
-<button onclick="show('cv')">CV</button>
-<button onclick="show('jobs')">Offres</button>
-
-</div>
-
-<!-- Main -->
 <div class="main">
 
-<div class="topbar">
+<header class="topbar">
+<button onclick="back()">←</button>
 <h3 id="title">Dashboard</h3>
-</div>
+</header>
 
 <div class="content">
 
-<!-- DASHBOARD -->
-<div id="dashboard" class="view">
+<div id="page-dashboard" class="page active">
 <div class="grid">
-<div class="card"><h3>Score</h3><p>94/100</p></div>
-<div class="card"><h3>Candidatures</h3><p>12</p></div>
-<div class="card"><h3>Entretiens</h3><p>4</p></div>
-</div>
-
-<div class="card">
-<h3>Action rapide</h3>
-<button class="btn btn-primary" onclick="alert('Simulation CV généré')">Générer un CV</button>
+<div class="card">Score 92</div>
+<div class="card">Candidatures 12</div>
+<div class="card">Entretiens 4</div>
 </div>
 </div>
 
-<!-- PROFILE -->
-<div id="profile" class="view hidden">
-<div class="card">
-<h3>Profil utilisateur</h3>
-<p>Nom : Amara Koné</p>
-<p>Score personnalité : 82</p>
-</div>
+<div id="page-personality" class="page">
+<div class="card">Analyse personnalité complète</div>
 </div>
 
-<!-- CV -->
-<div id="cv" class="view hidden">
-<div class="card">
-<h3>CV généré</h3>
-<p>Version optimisée ATS prête</p>
-<button class="btn btn-primary" onclick="alert('Téléchargement simulé')">Télécharger</button>
-</div>
+<div id="page-skills" class="page">
+<div class="card">Bilan compétences</div>
 </div>
 
-<!-- JOBS -->
-<div id="jobs" class="view hidden">
-<div class="card">
-<h3>Offres recommandées</h3>
-<p>Office Manager - Orange CI</p>
-<button class="btn btn-primary" onclick="alert('Candidature envoyée')">Postuler</button>
+<div id="page-jobs" class="page">
+<div class="card">Suivi candidatures</div>
 </div>
+
+<div id="page-coach" class="page">
+<div class="card">Coaching IA</div>
 </div>
 
 </div>
@@ -175,13 +128,12 @@ display:none;
 
 </div>
 
-<script>
-function show(view){
-document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));
-document.getElementById(view).classList.remove('hidden');
-document.getElementById('title').innerText = view.charAt(0).toUpperCase()+view.slice(1);
-}
-</script>
+</section>
+
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>
